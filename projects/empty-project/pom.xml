@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>io.skullabs.kikaha.archetypes</groupId>
+  <artifactId>empty-project-archetype</artifactId>
+  <version>1.0.0</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>empty-project-archetype</name>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.4</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <description>Kikaha: simple project (BOM)</description>
+
+  <url>https://github.com/Skullabs/kikaha/empty-project</url>
+
+  <developers>
+    <developer>
+      <id>ladraum</id>
+      <name>Ricardo Mattiazzi Baumgartner</name>
+      <email>ladraum@gmail.com</email>
+    </developer>
+    <developer>
+      <id>selonke</id>
+      <name>Cesar Henrique Selonke</name>
+      <email>cesar.selonke@gmail.com</email>
+    </developer>
+    <developer>
+      <id>miere</id>
+      <name>Miere Liniel Teixeira</name>
+      <email>miere.teixeira@gmail.com</email>
+    </developer>
+  </developers>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git@github.com:Skullabs/kikaha.git/empty-project</connection>
+    <developerConnection>scm:git:git@github.com:Skullabs/kikaha.git/empty-project</developerConnection>
+    <url>scm:git:git@github.com:Skullabs/kikaha.git/empty-project</url>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+</project>
