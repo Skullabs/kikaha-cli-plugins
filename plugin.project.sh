@@ -1,8 +1,14 @@
 #!/bin/sh
 
+PROJECTS_DIR=$PLUGIN_DIR/projects/
+
 group_id=kikaha.sample
 artifact_id=
 version=1.0.0-SNAPSHOT
+
+project_configure(){
+  mvn -q -f $PROJECTS_DIR/pom.xml
+}
 
 project_run(){
   expected_params 1 $@
