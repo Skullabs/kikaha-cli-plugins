@@ -1,12 +1,12 @@
 #!/bin/sh
 
 # VARIABLES
-PROJECTS_DIR=$PLUGIN_DIR/projects/
+PROJECTS_DIR=projects
 group_id=kikaha.sample
 version=1.0.0-SNAPSHOT
 
 project_configure(){
-  mvn -q -f $1/pom.xml
+  $MVN -q -f $1/${PROJECTS_DIR}/pom.xml
 }
 
 project_run(){
