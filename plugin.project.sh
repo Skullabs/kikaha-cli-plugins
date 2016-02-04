@@ -1,9 +1,8 @@
 #!/bin/sh
 
+# VARIABLES
 PROJECTS_DIR=$PLUGIN_DIR/projects/
-
 group_id=kikaha.sample
-artifact_id=
 version=1.0.0-SNAPSHOT
 
 project_configure(){
@@ -16,18 +15,16 @@ project_run(){
 }
 
 project_create(){
-  for arg in $@; do
-    name=`arg_name $arg`
-    if [ ! "$name" = "${arg}" ]; then
-      shift 1
-      value=`arg_value $arg`
-      export $name=$value
-    fi
-  done
-
   name=$1
   if [ "$artifact_id" = "" ]; then
     artifact_id=$1
+  fi
+
+  if [ -d "$artifact_id" ]; then
+    warn "A module/project named `yellow $artifact_id` already exists. Override it?"
+    warn "Press ENTER to Continue, Ctrl+C to abort."
+    read null
+    rm -rf $artifact_id
   fi
 
 	mvn archetype:generate -B \
