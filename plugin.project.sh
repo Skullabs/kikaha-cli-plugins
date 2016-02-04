@@ -2,8 +2,6 @@
 
 # VARIABLES
 PROJECTS_DIR=projects
-group_id=kikaha.sample
-version=1.0.0-SNAPSHOT
 
 project_configure(){
   mvn -f $1/${PROJECTS_DIR}/pom.xml clean install
@@ -16,9 +14,9 @@ project_run(){
 
 project_create(){
   name=$1
-  if [ "$artifact_id" = "" ]; then
-    artifact_id=$1
-  fi
+  group_id=${group_id:-kikaha.sample}
+  version=${version:-1.0.0-SNAPSHOT}
+  artifact_id=${artifact_id:-$name}
 
   if [ -d "$artifact_id" ]; then
     warn "A module/project named `yellow $artifact_id` already exists. Override it?"
