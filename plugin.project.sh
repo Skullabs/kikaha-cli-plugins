@@ -6,7 +6,7 @@ group_id=kikaha.sample
 version=1.0.0-SNAPSHOT
 
 project_configure(){
-  $MVN -q -f $1/${PROJECTS_DIR}/pom.xml
+  mvn -f $1/${PROJECTS_DIR}/pom.xml
 }
 
 project_run(){
