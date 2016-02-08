@@ -50,10 +50,6 @@
 			<artifactId>kikaha-urouting-jackson</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.skullabs.kikaha</groupId>
-			<artifactId>kikaha-urouting-mustache</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
