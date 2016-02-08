@@ -54,3 +54,34 @@ project_use(){
   info "Setting up project to use Kikaha version $1"
   var_set pom.xml version $1
 }
+
+project_add_dep(){
+  SED_RE='\(\([^:]*\):\([^:]*\):\(.*\)\)'
+  artifact_id=`echo $1 | sed "s/${SED_RE}/\3/"`
+  group_id=`echo $1 | sed "s/${SED_RE}/\2/"`
+  version=`echo $1 | sed "s/${SED_RE}/\4/"`
+
+  if [ "$version" = "$1" ]; then
+    dep=`cat <<EOF
+    <dependency>
+      <groupId>$group_id</groupId>
+      <artifactId>$artifact_id</artifactId>
+    </dependency>
+EOF
+`
+  else
+    dep=`cat <<EOF
+    <dependency>
+      <groupId>$group_id</groupId>
+      <artifactId>$artifact_id</artifactId>
+      <version>$version</version>
+    </dependency>
+EOF
+`
+  fi
+  dep=$(echo $dep | sed 's/\//\\\//g')
+
+  info "Adding $artifact_id ($group_id) at version $version as dependency"
+  debug "Maven dependency :\n $dep"
+  var_add pom.xml dependencies "$dep\n"
+}
