@@ -32,4 +32,25 @@ project_create(){
 		-DgroupId=$group_id \
 		-DartifactId=$artifact_id \
 		-Dversion=$version
+
+  cd $artifact_id
+  project_use_last
+}
+
+project_use_last(){
+  latest_version=`curl -s https://raw.githubusercontent.com/Skullabs/kikaha/master/kikaha-project/version`
+  project_use $latest_version
+}
+
+project_use(){
+  expected_params 1 $@
+  if [ ! -f "pom.xml" ]; then
+    warn "Invalid project. No maven project found."
+    info "Ensure that you choose a project folder that have a $(yellow pom.xml) file."
+    debug "Current work directory: `pwd`"
+    halt
+  fi
+
+  info "Setting up project to use Kikaha version $1"
+  var_set pom.xml version $1
 }
