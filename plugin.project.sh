@@ -56,10 +56,10 @@ project_use(){
 }
 
 project_add_dep(){
-  SED_RE='\(\([^:]*\):\([^:]*\):\(.*\)\)'
+  SED_RE='\(\([^:]*\):\([^:]*\)\(:\(.*\)\)*\)'
   artifact_id=`echo $1 | sed "s/${SED_RE}/\3/"`
   group_id=`echo $1 | sed "s/${SED_RE}/\2/"`
-  version=`echo $1 | sed "s/${SED_RE}/\4/"`
+  version=`echo $1 | sed "s/${SED_RE}/\5/"`
 
   if [ "$version" = "$1" ]; then
     dep=`cat <<EOF
