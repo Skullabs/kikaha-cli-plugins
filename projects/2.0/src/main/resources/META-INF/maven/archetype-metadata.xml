@@ -4,6 +4,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
     <fileSet filtered="true" encoding="UTF-8">
+      <directory>source</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
       <directory>webapp</directory>
       <includes>
         <include>**/*.html</include>
@@ -13,6 +19,7 @@
       <directory>resources</directory>
       <includes>
         <include>**/*.xml</include>
+        <include>**/*.yml</include>
       </includes>
     </fileSet>
   </fileSets>
