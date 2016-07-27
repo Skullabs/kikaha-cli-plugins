@@ -10,8 +10,8 @@
   <name>archetypes</name>
 
   <modules>
-    <module>default-project</module>
-    <module>empty-project</module>
+    <module>1.6</module>
+    <module>2.0</module>
   </modules>
 
 </project>

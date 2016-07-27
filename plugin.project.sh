@@ -13,8 +13,9 @@ project_run(){
 }
 
 project_create(){
-  name=$1
-  group_id=${group_id:-kikaha.sample}
+  template_name=$1
+  name=${name:-$1}
+  group_id=${group_id:-$name}
   version=${version:-1.0.0-SNAPSHOT}
   artifact_id=${artifact_id:-$name}
 
@@ -27,14 +28,11 @@ project_create(){
 
 	mvn archetype:generate -B \
 		-DarchetypeGroupId=io.skullabs.kikaha.archetypes \
-		-DarchetypeArtifactId=${name}-archetype \
+		-DarchetypeArtifactId=${template_name}-archetype \
 		-DarchetypeVersion=1.0.0 \
 		-DgroupId=$group_id \
 		-DartifactId=$artifact_id \
 		-Dversion=$version
-
-  cd $artifact_id
-  project_use_last
 }
 
 project_use_last(){
