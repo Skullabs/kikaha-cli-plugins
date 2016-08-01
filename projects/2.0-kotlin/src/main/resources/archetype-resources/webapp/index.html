@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<style>
+			input#username,
+			textarea#message {
+			    display: block;
+			    border: 1px solid #cdcdcd;
+			    padding: 1rem 1.5rem;
+			    margin: 1rem;
+			}
+
+			textarea#message {
+			    width: 80%;
+			    box-sizing: border-box;
+			}
+
+			fieldset {
+			    display: block;
+			    box-sizing: border-box;
+			    border: 0;
+			    border-bottom: 1px solid #efefef;
+			}
+
+			ul#messages, ul#messages li {
+			    list-style: none;
+			    padding: 0;
+			    margin: 0;
+			}
+
+			ul#messages li {
+			    padding: 1rem;
+			}
+
+			ul#messages li b {
+			    display: inline-block;
+			    margin-right: 10px;
+			}
+
+			ul#messages li b:after {
+			    content: ":";
+			    font-weight: 300;
+			}
+		</style>
+		<script>
+
+			function $( id ){ return document.getElementById( id ) }
+			function create( element ) { return document.createElement( element ) }
+
+			window.onload = function(){
+				var ws = null, url = "ws://"+document.location.host+"/message"
+
+				function connect(){
+					if ( ws ) return
+
+					ws = new WebSocket( url )
+					ws.onopen = function(){
+						sendMessage( "Entered..." )
+					}
+					ws.onmessage = function( e ){
+						var msg = JSON.parse( e.data )
+						writeMessage( msg.text, msg.userName )
+					}
+				}
+
+				function sendMessage( message ){
+					ws.send( JSON.stringify({
+						text: message || $("message").value,
+						userName: $("username").value
+					}) )
+					$("message").value = ""
+				}
+
+				function writeMessage( message, author )
+				{
+					var li = create( "li" )
+
+					if ( author ) {
+						var b = create("b")
+						b.innerText = author
+						li.appendChild( b )
+					}
+
+					var span = create("span")
+					span.innerText = message
+					li.appendChild( span )
+
+					$("messages").appendChild( li )
+				}
+
+				$( "username" ).addEventListener( "change", connect )
+				$( "message" ).addEventListener( "change", function(){
+					sendMessage()
+				})
+			}
+
+		</script>
+	</head>
+	<body>
+		<fieldset>
+			<input type="text" id="username" placeholder="Name">
+			<textarea id="message" placeholder="Type a message..."></textarea>
+		</fieldset>
+		<ul id="messages">
+		</ul>
+	</body>
+</html>
