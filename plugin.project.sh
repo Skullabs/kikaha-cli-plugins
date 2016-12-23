@@ -36,7 +36,7 @@ project_create(){
 }
 
 project_use_last(){
-  latest_version=`curl -s https://raw.githubusercontent.com/Skullabs/kikaha/master/kikaha-project/version`
+  latest_version=`curl -s http://download.kikaha.io/stable-version`
   project_use $latest_version
 }
 
